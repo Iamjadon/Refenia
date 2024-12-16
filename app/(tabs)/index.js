@@ -1,227 +1,129 @@
-
 import { useRouter } from 'expo-router';
-import React, { useEffect, useRef, useState } from "react";
-import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-
+import React, { useState } from 'react';
+import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const Index = () => {
-const router = useRouter();
-  const et1 = useRef();
-  const et2 = useRef();
-  const et3 = useRef();
-  const et4 = useRef();
-  const et5 = useRef();
-  const et6 = useRef();
+  const [mobileNumber, setMobileNumber] = useState('');
+  const router = useRouter();
 
-  const [f1, setF1] = useState('');
-  const [f2, setF2] = useState('');
-  const [f3, setF3] = useState('');
-  const [f4, setF4] = useState('');
-  const [f5, setF5] = useState('');
-  const [f6, setF6] = useState('');
-  const [count, setCount] = useState(60);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCount((prevCount) => {
-        if (prevCount === 0) {
-          clearInterval(interval);
-          return 0; 
-        } else {
-          return prevCount - 1; 
-        }
-      });
-    }, 1000);
-
-    return () => clearInterval(interval); 
-  }, []);
-
-  const otpValidate = () =>{
-    let otp = '123456';
-    let enteredOtp = f1+f2+f3+f4+f5+f6;
-    if(enteredOtp==otp){
-      Alert.alert('OTP Matched', 'Proceeding to the next page');
-      router.push('/BillAmount');
-     
+  const handleLogin = () => {
+    if (mobileNumber.length < 10) {
+      Alert.alert("Invalid Number", "Please enter a valid 10-digit mobile number.");
+    } else {
+      router.push('/Otp'); 
     }
-    else{
-      Alert.alert('Wrong OTP');
-    }
-  }
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Otp Verification</Text>
-      <View style={styles.otpview}>
-        <TextInput
-          ref={et1}
-          style={[styles.inputview, { borderColor: f1.length >= 1 ? 'blue' : '#000' }]}
-          keyboardType="number-pad"
-          maxLength={1}
-          value={f1}
-          onChangeText={(txt) => {
-            setF1(txt);
-            if (txt.length >= 1) {
-              et2.current?.focus();
-            }
-          }}
+      <View style={styles.imageContainer}>
+        <Image
+          source={require('../../assets/images/solarLogin.jpg')} 
+          style={styles.image}
+          resizeMode="cover"
         />
-        <TextInput
-          ref={et2}
-          style={[styles.inputview, { borderColor: f2.length >= 1 ? 'blue' : '#000' }]}
-          keyboardType="number-pad"
-          maxLength={1}
-          value={f2}
-          onChangeText={(txt) => {
-            setF2(txt);
-            if (txt.length >= 1) {
-              et3.current.focus();
-            } else if (txt.length < 1) {
-              et1.current.focus();
-            }
-          }}
-        />
-        <TextInput
-          ref={et3}
-          style={[styles.inputview, { borderColor: f3.length >= 1 ? 'blue' : '#000' }]}
-          keyboardType="number-pad"
-          maxLength={1}
-          value={f3}
-          onChangeText={(txt) => {
-            setF3(txt);
-            if (txt.length >= 1) {
-              et4.current.focus();
-            } else if (txt.length < 1) {
-              et2.current.focus();
-            }
-          }}
-        />
-        <TextInput
-          ref={et4}
-          style={[styles.inputview, { borderColor: f4.length >= 1 ? 'blue' : '#000' }]}
-          keyboardType="number-pad"
-          maxLength={1}
-          value={f4}
-          onChangeText={(txt) => {
-            setF4(txt);
-            if (txt.length >= 1) {
-              et5.current.focus();
-            } else if (txt.length < 1) {
-              et3.current.focus();
-            }
-          }}
-        />
-        <TextInput
-          ref={et5}
-          style={[styles.inputview, { borderColor: f5.length >= 1 ? 'blue' : '#000' }]}
-          keyboardType="number-pad"
-          maxLength={1}
-          value={f5}
-          onChangeText={(txt) => {
-            setF5(txt);
-            if (txt.length >= 1) {
-              et6.current.focus();
-            } else if (txt.length < 1) {
-              et4.current.focus();
-            }
-          }}
-        />
-        <TextInput
-          ref={et6}
-          style={[styles.inputview, { borderColor: f6.length >= 1 ? 'blue' : '#000' }]}
-          keyboardType="number-pad"
-          maxLength={1}
-          value={f6}
-          onChangeText={(txt) => {
-            setF6(txt);
-            if (txt.length < 1) {
-              et5.current.focus();
-            }
-          }}
-        />
+        <View style={styles.overlay}></View> 
       </View>
+      
+      <Text style={styles.heading}>Welcome Back!</Text>
+      <Text style={styles.subheading}>Please enter your mobile number to login</Text>
 
-      <View style={styles.resendview}>
-        <Text
-          style={{
-            fontSize: 20,
-            fontWeight: '700',
-            color: count === 0 ? 'blue' : 'gray',
-          }}
-          onPress={()=>{
-            setCount(60);
-          }}
-        >
-          Resend
-        </Text>
-        {count!==0 && (
-          <Text style={{marginLeft:20,fontSize:20}}>{count + ' seconds'}</Text>
-        )}
-        
-      </View>
-
-      <TouchableOpacity
-        disabled={f1 !== '' && f2 !== '' && f3 !== '' && f4 !== '' && f5 !== '' && f6 !== '' ? false : true}
-        style={[
-          styles.verifyotp,
-          {
-            backgroundColor: f1 !== '' && f2 !== '' && f3 !== '' && f4 !== '' && f5 !== '' && f6 !== '' ? 'blue' : '#949494',
-          },
-        ]}
-        onPress={()=>otpValidate()}
-      >
-        <Text style={styles.btnOtp} >Verify Otp</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Enter your mobile number"
+        keyboardType="phone-pad"
+        value={mobileNumber}
+        onChangeText={setMobileNumber}
+      />
+      
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default Index;
-
 const styles = StyleSheet.create({
-  container: { flex: 1 },
-  title: {
-    fontSize: 22,
-    fontWeight: '700',
-    marginTop: 100,
-    alignSelf: 'center',
-    color: '#000',
+  container: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: '#f8f9fa',  
+    paddingTop: 40,  
   },
-  otpview: {
+  imageContainer: {
     width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-    marginTop: 100,
+    height: 300, 
+    position: 'relative',
+    overflow: 'hidden',
+    // borderBottomLeftRadius: 50, 
+    // borderBottomRightRadius: 50,
   },
-  inputview: {
-    width: 50,
-    height: 50,
-    borderWidth: 0.5,
-    borderRadius: 10,
-    marginLeft: 10,
-    textAlign: 'center',
+  image: {
+    width: '100%',
+    height: '100%',
+    // borderBottomLeftRadius: 50, 
+    // borderBottomRightRadius: 50, 
+  },
+  // overlay: {
+  //   position: 'absolute',
+  //   top: 0,
+  //   left: 0,
+  //   right: 0,
+  //   bottom: 0,
+  //   backgroundColor: 'rgba(255, 255, 255, 0.5)', 
+  //   borderBottomLeftRadius: 50, 
+  //   borderBottomRightRadius: 50, 
+  // },
+  heading: {
+    fontSize: 28,
+    fontWeight: '700',  
+    marginTop: 20, 
+    marginBottom: 10,
+    color: '#343a40',
+    marginTop:80
+  },
+  subheading: {
     fontSize: 18,
-    fontWeight: '700',
+    marginBottom: 20,
+    textAlign: 'center',
+    color: '#6c757d', 
   },
-  verifyotp: {
+  input: {
     width: '90%',
-    height: 55,
-    backgroundColor: 'blue',
-    borderRadius: 20,
-    alignSelf: 'center',
+    height: 45,
+    borderColor: '#ced4da',  
+    borderWidth: 1,
+    marginBottom: 20,
+    paddingLeft: 15,
+    borderRadius: 8,  
+    fontSize: 16,
+    backgroundColor: '#ffffff', 
+    shadowColor: "#000",  
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3.5,
+    elevation: 5,  
+  },
+  button: {
+    width: '90%',
+    height: 45,
+    backgroundColor: '#007bff', 
     justifyContent: 'center',
-    marginTop: 20,
     alignItems: 'center',
+    borderRadius: 8, 
+    padding: 10,
+    shadowColor: "#000",  
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
   },
-  btnOtp: {
-    color: '#fff',
-    fontSize: 20,
-  },
-  resendview: {
-    flexDirection: 'row',
-    alignSelf: 'center',
-    marginTop: 30,
-    marginBottom: 30,
+  buttonText: {
+    fontSize: 18,
+    color: '#ffffff', 
+    fontWeight: '700', 
   },
 });
+
+export default Index;

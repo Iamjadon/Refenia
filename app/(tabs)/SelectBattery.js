@@ -3,20 +3,20 @@ import { useRouter } from 'expo-router'; // for navigation
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const SelectCompany = () => {
+const SelectBattery = () => {
   const router = useRouter();
 
   const [companies] = useState([
-    { id: '1', name: 'Company A' },
-    { id: '2', name: 'Company B' },
-    { id: '3', name: 'Company C' },
+    { id: '1', name: 'Battery A' },
+    { id: '2', name: 'Battery B' },
+    { id: '3', name: 'Battery C' },
   ]);
 
-  const [selectedCompany, setSelectedCompany] = useState('');
+  const [selectedBattery, setSelectedBattery] = useState('');
   // const [selectedOption, setSelectedOption] = useState('');
 
-  const handleCompanyChange = (value) => {
-    setSelectedCompany(value);
+  const handleBatteryChange = (value) => {
+    setSelectedBattery(value);
   };
 
   // const handleDropdownChange = (value) => {
@@ -24,28 +24,29 @@ const SelectCompany = () => {
   // };
 
   const handleContinue = () => {
-    if (!selectedCompany) {
-      alert('Please select battery name.');
+    if (!selectedBattery ) {
+      alert('Please select Battery name.');
     } else {
-      router.push('/SelectBattery');
+      router.push('./index.js');
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Select Company</Text>
+      <Text style={styles.heading}>Select Battery</Text>
+
       <Picker
-        selectedValue={selectedCompany}
+        selectedValue={selectedBattery}
         style={styles.picker}
-        onValueChange={handleCompanyChange}
+        onValueChange={handleBatteryChange}
       >
-        <Picker.Item label="Select a company" value="" />
-        {companies.map((company) => (
-          <Picker.Item key={company.id} label={company.name} value={company.id} />
+        <Picker.Item label="Select a Battery" value="" />
+        {companies.map((Battery) => (
+          <Picker.Item key={Battery.id} label={Battery.name} value={Battery.id} />
         ))}
       </Picker>
 
-    
+     
       <TouchableOpacity style={styles.button} onPress={handleContinue}>
         <Text style={styles.buttonText}>Continue</Text>
       </TouchableOpacity>
@@ -85,4 +86,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SelectCompany;
+export default SelectBattery;
