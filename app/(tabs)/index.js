@@ -1,129 +1,98 @@
-import { useRouter } from 'expo-router';
-import React, { useState } from 'react';
-import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useRouter } from "expo-router";
+import React from "react";
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
-const Index = () => {
-  const [mobileNumber, setMobileNumber] = useState('');
+const index = () => {
   const router = useRouter();
-
-  const handleLogin = () => {
-    if (mobileNumber.length < 10) {
-      Alert.alert("Invalid Number", "Please enter a valid 10-digit mobile number.");
-    } else {
-      router.push('/Otp'); 
-    }
+  // Navigation handler
+  const handleGetStarted = () => {
+    router.push("/LoginPage");
   };
 
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image
-          source={require('../../assets/images/solarLogin.jpg')} 
-          style={styles.image}
-          resizeMode="cover"
-        />
-        <View style={styles.overlay}></View> 
-      </View>
-      
-      <Text style={styles.heading}>Welcome Back!</Text>
-      <Text style={styles.subheading}>Please enter your mobile number to login</Text>
-
-      <TextInput
-        style={styles.input}
-        placeholder="Enter your mobile number"
-        keyboardType="phone-pad"
-        value={mobileNumber}
-        onChangeText={setMobileNumber}
-      />
-      
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
+      <ImageBackground
+        source={require("../../assets/images/frontPage.jpg")}
+        style={styles.imageBackground}
+        resizeMode="cover"
+      >
+        <View style={styles.overlay}>
+          <View style={styles.textContainer}>
+            <Text style={styles.heading}>
+              Manage Your <Text style={styles.greenText}>Solar</Text>
+            </Text>
+            <Text style={[styles.heading, styles.greenText]}>
+              Power Generation
+            </Text>
+            <Text style={styles.heading}>At One Place</Text>
+          </View>
+          <TouchableOpacity style={styles.button} onPress={handleGetStarted}>
+            <Text style={styles.buttonText}>Lets Get Started 	</Text>
+            <Text style={styles.arrow}>&rarr;</Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: '#f8f9fa',  
-    paddingTop: 40,  
+    backgroundColor: "#fff",
   },
-  imageContainer: {
-    width: '100%',
-    height: 300, 
-    position: 'relative',
-    overflow: 'hidden',
-    // borderBottomLeftRadius: 50, 
-    // borderBottomRightRadius: 50,
+  imageBackground: {
+    flex: 1,
+    justifyContent: "space-between",
   },
-  image: {
-    width: '100%',
-    height: '100%',
-    // borderBottomLeftRadius: 50, 
-    // borderBottomRightRadius: 50, 
+  overlay: {
+    flex: 1,
+    // backgroundColor: "rgba(255, 255, 255, 0.5)",
+    justifyContent: "space-between",
+    paddingVertical: 80,
+    paddingHorizontal: 20, 
   },
-  // overlay: {
-  //   position: 'absolute',
-  //   top: 0,
-  //   left: 0,
-  //   right: 0,
-  //   bottom: 0,
-  //   backgroundColor: 'rgba(255, 255, 255, 0.5)', 
-  //   borderBottomLeftRadius: 50, 
-  //   borderBottomRightRadius: 50, 
-  // },
+  textContainer: {
+    alignItems: "flex-start", 
+  },
   heading: {
-    fontSize: 28,
-    fontWeight: '700',  
-    marginTop: 20, 
-    marginBottom: 10,
-    color: '#343a40',
-    marginTop:80
+    fontSize: 38,
+    fontWeight: "bold",
+    color: "black",
+    lineHeight: 36,
+    margin:5
   },
-  subheading: {
-    fontSize: 18,
-    marginBottom: 20,
-    textAlign: 'center',
-    color: '#6c757d', 
-  },
-  input: {
-    width: '90%',
-    height: 45,
-    borderColor: '#ced4da',  
-    borderWidth: 1,
-    marginBottom: 20,
-    paddingLeft: 15,
-    borderRadius: 8,  
-    fontSize: 16,
-    backgroundColor: '#ffffff', 
-    shadowColor: "#000",  
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3.5,
-    elevation: 5,  
+  greenText: {
+    color: "green",
   },
   button: {
-    width: '90%',
-    height: 45,
-    backgroundColor: '#007bff', 
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8, 
-    padding: 10,
-    shadowColor: "#000",  
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-    elevation: 5,
+    backgroundColor: 'black',
+    paddingVertical: 0, 
+    paddingHorizontal: 60, 
+    borderRadius: 30, 
+    alignItems: 'center', 
+    alignSelf: 'center', 
+    flexDirection: 'row',
   },
   buttonText: {
+    color: "white",
     fontSize: 18,
-    color: '#ffffff', 
-    fontWeight: '700', 
+    fontWeight: "bold",
+    // marginRight: 10, 
+
+  },
+  arrow: {
+    color: 'white',
+    fontSize: 34,
+    fontWeight: 'bold',
+    marginBottom:10,
+ 
   },
 });
 
-export default Index;
+export default index;
