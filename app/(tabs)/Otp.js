@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 
-const Index = () => {
+const Otp = () => {
 const router = useRouter();
   const et1 = useRef();
   const et2 = useRef();
@@ -176,9 +176,12 @@ const router = useRouter();
   );
 };
 
-export default Index;
+export default Otp;
 
 const styles = StyleSheet.create({
+  body:{
+    fontFamily: 'Roboto',
+  },
   container: { flex: 1 },
   title: {
     fontSize: 22,

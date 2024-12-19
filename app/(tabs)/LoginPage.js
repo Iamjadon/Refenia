@@ -44,6 +44,9 @@ const LoginPage = () => {
 };
 
 const styles = StyleSheet.create({
+  body:{
+    fontFamily: 'Roboto',
+  },
   container: {
     flex: 1,
     justifyContent: 'flex-start',

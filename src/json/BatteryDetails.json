@@ -1,0 +1,124 @@
+{
+  "BatteryDetails": [
+    {
+      "id": 1,
+      "BatteryImage": "battery1.jpg",
+      "BatteryDescription": "Lithium-ion battery for residential solar energy storage",
+      "Amount": 1200
+    },
+    {
+      "id": 2,
+      "BatteryImage": "battery2.jpg",
+      "BatteryDescription": "Lead-acid deep cycle battery for off-grid applications",
+      "Amount": 800
+    },
+    {
+      "id": 3,
+      "BatteryImage": "battery3.jpg",
+      "BatteryDescription": "Gel battery for backup power in small commercial systems",
+      "Amount": 950
+    },
+    {
+      "id": 4,
+      "BatteryImage": "battery4.jpg",
+      "BatteryDescription": "High-capacity lithium battery for electric vehicle charging",
+      "Amount": 15000
+    },
+    {
+      "id": 5,
+      "BatteryImage": "battery5.jpg",
+      "BatteryDescription": "Nickel-cadmium battery for solar lighting systems",
+      "Amount": 500
+    },
+    {
+      "id": 6,
+      "BatteryImage": "battery6.jpg",
+      "BatteryDescription": "Solid-state battery for long-term energy storage in grid applications",
+      "Amount": 1800
+    },
+    {
+      "id": 7,
+      "BatteryImage": "battery7.jpg",
+      "BatteryDescription": "Modular lithium-ion battery for large-scale solar installations",
+      "Amount": 7000
+    },
+    {
+      "id": 8,
+      "BatteryImage": "battery8.jpg",
+      "BatteryDescription": "Advanced lithium-polymer battery for portable power solutions",
+      "Amount": 1100
+    },
+    {
+      "id": 9,
+      "BatteryImage": "battery9.jpg",
+      "BatteryDescription": "Ultra-fast charging battery for renewable energy integration",
+      "Amount": 2200
+    },
+    {
+      "id": 10,
+      "BatteryImage": "battery10.jpg",
+      "BatteryDescription": "Flooded lead-acid battery for commercial energy backup systems",
+      "Amount": 750
+    },
+    {
+      "id": 11,
+      "BatteryImage": "battery11.jpg",
+      "BatteryDescription": "High-efficiency sodium-ion battery for grid energy storage",
+      "Amount": 2500
+    },
+    {
+      "id": 12,
+      "BatteryImage": "battery12.jpg",
+      "BatteryDescription": "Lithium iron phosphate battery for electric vehicle charging stations",
+      "Amount": 8500
+    },
+    {
+      "id": 13,
+      "BatteryImage": "battery13.jpg",
+      "BatteryDescription": "Deep cycle lead-acid battery for small off-grid homes",
+      "Amount": 650
+    },
+    {
+      "id": 14,
+      "BatteryImage": "battery14.jpg",
+      "BatteryDescription": "Solar storage battery with high charge retention",
+      "Amount": 1200
+    },
+    {
+      "id": 15,
+      "BatteryImage": "battery15.jpg",
+      "BatteryDescription": "Graphene-enhanced battery for electric power tools",
+      "Amount": 950
+    },
+    {
+      "id": 16,
+      "BatteryImage": "battery16.jpg",
+      "BatteryDescription": "Lithium-ion battery for renewable energy backup in urban areas",
+      "Amount": 1300
+    },
+    {
+      "id": 17,
+      "BatteryImage": "battery17.jpg",
+      "BatteryDescription": "Batteries for hybrid solar and wind systems for rural energy needs",
+      "Amount": 2000
+    },
+    {
+      "id": 18,
+      "BatteryImage": "battery18.jpg",
+      "BatteryDescription": "Smart energy storage battery for industrial energy management",
+      "Amount": 5500
+    },
+    {
+      "id": 19,
+      "BatteryImage": "battery19.jpg",
+      "BatteryDescription": "High-energy-density battery for commercial electric vehicles",
+      "Amount": 22000
+    },
+    {
+      "id": 20,
+      "BatteryImage": "battery20.jpg",
+      "BatteryDescription": "Durable battery for backup in harsh weather conditions",
+      "Amount": 1500
+    }
+  ]
+}

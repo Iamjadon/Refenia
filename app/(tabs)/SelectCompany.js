@@ -1,86 +1,125 @@
-import { Picker } from '@react-native-picker/picker'; // Import the correct Picker component
-import { useRouter } from 'expo-router'; // for navigation
-import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useRouter } from 'expo-router';
+import React from 'react';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import companyData from '../../src/json/CompanyDetails.json';
 
 const SelectCompany = () => {
   const router = useRouter();
 
-  const [companies] = useState([
-    { id: '1', name: 'Company A' },
-    { id: '2', name: 'Company B' },
-    { id: '3', name: 'Company C' },
-  ]);
-
-  const [selectedCompany, setSelectedCompany] = useState('');
-  // const [selectedOption, setSelectedOption] = useState('');
-
-  const handleCompanyChange = (value) => {
-    setSelectedCompany(value);
-  };
-
-  // const handleDropdownChange = (value) => {
-  //   setSelectedOption(value);
-  // };
-
-  const handleContinue = () => {
-    if (!selectedCompany) {
-      alert('Please select battery name.');
-    } else {
-      router.push('/SelectBattery');
+  // Handle the selection of a company
+  const handleContinue = (company) => {
+    if (!company) {
+      alert('Please select a company.');
+      return;
     }
+    router.push('/SelectBattery');
   };
+
+  // Render individual company card
+  const CompanyCard = ({ item }) => (
+    <View style={styles.companyCard}>
+      <Text style={styles.companyName}>{item.CompanyName}</Text>
+      <Text style={styles.gridDescription}>{item.GridDescription}</Text>
+      <Text style={styles.amount}>${item.Amount.toLocaleString()}</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => handleContinue(item)}
+        accessible
+        accessibilityLabel={`Select ${item.CompanyName}`}
+        accessibilityHint="Navigate to the next screen"
+      >
+        <Text style={styles.buttonText}>Select</Text>
+      </TouchableOpacity>
+    </View>
+  );
+
+  // Check for empty or invalid data
+  if (!companyData?.CompaniesDetails?.length) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.errorText}>No company data available. Please try again later.</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Select Company</Text>
-      <Picker
-        selectedValue={selectedCompany}
-        style={styles.picker}
-        onValueChange={handleCompanyChange}
-      >
-        <Picker.Item label="Select a company" value="" />
-        {companies.map((company) => (
-          <Picker.Item key={company.id} label={company.name} value={company.id} />
-        ))}
-      </Picker>
-
-    
-      <TouchableOpacity style={styles.button} onPress={handleContinue}>
-        <Text style={styles.buttonText}>Continue</Text>
-      </TouchableOpacity>
+      <FlatList
+        data={companyData.CompaniesDetails}
+        keyExtractor={(item, index) => item.id?.toString() || index.toString()} 
+        renderItem={({ item }) => <CompanyCard item={item} />}
+        contentContainerStyle={styles.listContainer}
+      />
     </View>
   );
 };
 
+
 const styles = StyleSheet.create({
+  body:{
+    fontFamily: 'Roboto',
+   
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#f7f7f7',
+    backgroundColor: '#f0f8ff', 
+    marginTop:30
+   
   },
   heading: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: '#333',
   },
-  picker: {
-    height: 50,
-    width: 200,
-    marginBottom: 20,
+  listContainer: {
+    flexGrow: 1,
+    width: '100%',
+  },
+  companyCard: {
+    backgroundColor: '#ffffff',
+    padding: 20,
+    marginVertical: 10,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 5,
+    borderLeftWidth: 8,
+    borderLeftColor: '#007BFF',
+  },
+  companyName: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#007BFF', 
+    marginBottom: 8,
+  },
+  gridDescription: {
+    fontSize: 14,
+    color: '#666', 
+    marginVertical: 8,
+    lineHeight: 20,
+  },
+  amount: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#28a745',
+    marginTop: 10,
   },
   button: {
     backgroundColor: '#007BFF',
-    paddingVertical: 15,
-    paddingHorizontal: 40,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
     borderRadius: 8,
     marginTop: 20,
   },
   buttonText: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
   },
 });
