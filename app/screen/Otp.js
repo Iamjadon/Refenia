@@ -41,7 +41,7 @@ const router = useRouter();
     let enteredOtp = f1+f2+f3+f4+f5+f6;
     if(enteredOtp==otp){
       Alert.alert('OTP Matched', 'Proceeding to the next page');
-      router.push('/BillAmount');
+      router.push('./BillAmount');
      
     }
     else{

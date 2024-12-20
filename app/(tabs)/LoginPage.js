@@ -10,7 +10,7 @@ const LoginPage = () => {
     if (mobileNumber.length < 10) {
       Alert.alert("Invalid Number", "Please enter a valid 10-digit mobile number.");
     } else {
-      router.push('/Otp'); 
+      router.push('../screen/Otp'); 
     }
   };
 
